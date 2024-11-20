@@ -1,16 +1,40 @@
 <template>
   <div id="app">
-    <nav align="center">
-      <router-link to="/" >MSG</router-link> |
-      <router-link to="/calTopo">Cal Topo | </router-link>
-      <router-link to="/getkdotp">Get kdotp | </router-link>
-      <router-link to="/getPairing">Get Pairing | </router-link>
-      <router-link to="/test">Test</router-link>
-      <!-- <router-link to="/about">About</router-link> -->
-    </nav>
-    <router-view/>
+    <el-header>
+      <el-menu :default-active="this.$route.path" class="el-menu" mode="horizontal" router
+        @select="handleSelect">
+        <el-menu-item v-for="(item, i) in navList" :key="i" :index="item.name">
+          <template slot="title">
+            <span> {{ item.navItem }}</span>
+          </template>
+        </el-menu-item>
+      </el-menu>
+    </el-header>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
   </div>
 </template>
+
+<script>
+export default ({
+  data() {
+    return {
+      navList: [
+        {name: "/", navItem: "Home"},
+        {name: "/msg", navItem: "MSG"},
+        {name: "/material", navItem: "Material"},
+        {name: "/achieve", navItem: "Achieve"},
+      ]
+    };
+  },
+  methods: {
+    handleSelect(key,keyPath) {
+      console.log(key,keyPath);
+    }
+  }
+})
+</script>
 
 <style>
 #app {
@@ -33,4 +57,5 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

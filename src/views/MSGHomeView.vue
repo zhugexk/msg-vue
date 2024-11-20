@@ -1,70 +1,8 @@
 <template>
-  <el-container class="Test">
+  <el-container class="Home">
     <el-main>
-      <MSGSelect @selectMSG="selectMSG"></MSGSelect>
-      <el-descriptions v-if="isGetMSG" :column="4" title="Magnetic space group" direction="vertical" border>
-        <el-descriptions-item label="Type">{{ msg.type }}</el-descriptions-item>
-        <el-descriptions-item label="Group name">{{
-          msg.groupName
-        }}</el-descriptions-item>
-        <!-- bravais lattice -->
-        <el-descriptions-item label="T">
-          <template>
-            <el-popover trigger="hover" placement="top">
-              <p>Basis vectors for conventional lattice:</p>
-              <p>
-                <math-jax-view
-                  :latex="msg.bravaisLattice.conventionalBasicVectors.map((item, index) => { return `\\vec{a}_{${index + 1}}` + '=(' + item.toString() + ')' }).toString()"></math-jax-view>
-              </p>
-              <p>Basis vectors for primitive lattice:</p>
-              <P>
-                <math-jax-view
-                  :latex="msg.bravaisLattice.primitiveBasicVectors.map((item, index) => { return `\\vec{t}_{${index + 1}}` + '=(' + item.toString() + ')' }).toString()"></math-jax-view>
-              </P>
-              <div slot="reference">
-                <math-jax-view :latex="msg.bravaisLattice.name"></math-jax-view>
-              </div>
-            </el-popover>
-          </template>
-        </el-descriptions-item>
-        <!-- G/T -->
-        <el-descriptions-item label="G/T">
-          <template>
-            <el-popover trigger="hover" placement="top">
-              <el-table :data="msg.operations" style="width:100%" max-height="400" border>
-                <el-table-column label="operation" width="250">
-                  <template slot-scope="scope">
-                    <math-jax-view v-if="scope.row.isTimeInversal"
-                      :latex="'\\Theta\\{' + scope.row.rotation + '|' + scope.row.translation.toString() + '\\}'"></math-jax-view>
-                    <math-jax-view v-else
-                      :latex="'\\{' + scope.row.rotation + '|' + scope.row.translation.toString() + '\\}'"></math-jax-view>
-                  </template>
-                </el-table-column>
-                <el-table-column label="det" width="80">
-                  <template slot-scope="scope">
-                    <math-jax-view :latex="scope.row.pointGroupOperation.det.toString()"></math-jax-view>
-                  </template>
-                </el-table-column>
-                <el-table-column label="rotation axis" width="250">
-                  <template slot-scope="scope">
-                    <math-jax-view :latex="'(' + scope.row.pointGroupOperation.axis.toString() + ')'"></math-jax-view>
-                  </template>
-                </el-table-column>
-                <el-table-column label="rotation angle" width="150">
-                  <template slot-scope="scope">
-                    <math-jax-view :latex="scope.row.pointGroupOperation.angle"></math-jax-view>
-                  </template>
-                </el-table-column>
-              </el-table>
-              <div slot="reference" class="name-wrapper">
-                <el-tag size="medium">
-                  Show all operations
-                </el-tag>
-              </div>
-            </el-popover>
-          </template>
-        </el-descriptions-item>
-      </el-descriptions>
+      <MSGSelectDialog @selectMSG="selectMSG"></MSGSelectDialog>
+      <MSGDescription v-if="isGetMSG" style="margin-bottom: 20px" :msg="msg"></MSGDescription>
       <el-divider></el-divider>
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick" style="margin-top: 20px">
         <el-tab-pane label="High Symmetry Point Band Node" name="hspbn">
@@ -100,18 +38,17 @@
 
 <script>
 import type2Idjson from "../../src/static/type2Id.json";
-import MathJaxView from "@/utils/MathJaxView.vue";
 import HSPBNView from "@/component/HSPBNView.vue";
 import TSubgroupTable from '@/component/TSubgroupTable.vue';
 import AIVectorTable from '@/component/AIVectorTable.vue';
-import MSGSelect from '@/component/MSGSelect.vue';
-// import axios from "axios";
 import request from "@/js/request";
 import WyckoffPositionTable from "@/component/WyckoffPositionTable.vue";
 import LittleGroupView from "@/component/LittleGroupView.vue";
+import MSGDescription from "@/component/MSGDescription.vue";
+import MSGSelectDialog from "@/component/MSGSelectDialog.vue";
 
 export default {
-  components: { MathJaxView, HSPBNView, TSubgroupTable, AIVectorTable, MSGSelect, WyckoffPositionTable, LittleGroupView },
+  components: { HSPBNView, TSubgroupTable, AIVectorTable, WyckoffPositionTable, LittleGroupView, MSGDescription, MSGSelectDialog },
   setup() { },
 
   data() {

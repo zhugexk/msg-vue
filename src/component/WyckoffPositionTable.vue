@@ -2,7 +2,7 @@
     <div>
         <el-table :data="wpList.wpList" v-if="wpList.wpList != null" highlight-current-row
             @current-change="handleCurrentChange" style="width:100%" max-height="600" border>
-            <el-table-column label="letter" align="center">
+            <el-table-column label="Letter" align="center">
                 <template slot-scope="scope">
                     <math-jax-view :latex="scope.row.letter"></math-jax-view>
                 </template>

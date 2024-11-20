@@ -1,0 +1,58 @@
+[
+    {
+        "name":"\\Gamma _t",
+        "info":"Triclinic primitive"
+    },
+    {
+        "name":"\\Gamma _m",
+        "info":"Monoclinic primitive"
+    },
+    {
+        "name":"\\Gamma _m{}^b",
+        "info":"Monoclinic base-centered"
+    },
+    {
+        "name":"\\Gamma _o",
+        "info":"Orthorhombic primitive"
+    },
+    {
+        "name":"\\Gamma _o{}^b",
+        "info":"Orthorhombic base-centered"
+    },
+    {
+        "name":"\\Gamma _o{}^f",
+        "info":"Orthorhombic face-centered"
+    },
+    {
+        "name":"\\Gamma _o{}^v",
+        "info":"Orthorhombic body-centered"
+    },
+    {
+        "name":"\\Gamma _q",
+        "info":"Tetragonal primitive"
+    },
+    {
+        "name":"\\Gamma _q{}^v",
+        "info":"Tetragonal body-centered"
+    },
+    {
+        "name":"\\Gamma _h",
+        "info":"Hexagonal primitive"
+    },
+    {
+        "name":"\\Gamma _{\\text{rh}}",
+        "info":"Trigonal primitive"
+    },
+    {
+        "name":"\\Gamma _c",
+        "info":"Cubic primitive"
+    },
+    {
+        "name":"\\Gamma _c{}^f",
+        "info":"Cubic face-centered"
+    },
+    {
+        "name":"\\Gamma _c{}^v",
+        "info":"Cubic body-centered"
+    }
+]
